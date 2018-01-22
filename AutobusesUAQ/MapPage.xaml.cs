@@ -20,6 +20,7 @@ namespace AutobusesUAQ
             };
             var stack = new StackLayout { Spacing = 0 };
             var position = new Position(19.32291667, -99.224245); // Latitude, Longitude
+
             var pin = new Pin
             {
                 Type = PinType.Place,
