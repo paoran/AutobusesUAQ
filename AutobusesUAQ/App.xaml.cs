@@ -1,5 +1,5 @@
 ﻿using System;
-
+using AutobusesUAQ.Views;
 using Xamarin.Forms;
 
 namespace AutobusesUAQ
@@ -12,8 +12,8 @@ namespace AutobusesUAQ
         public App()
         {
             InitializeComponent();
-
-            if (UseMockDataStore)
+            MainPage = new MenuPrincipal();//Se reemplaza por las lineas siguientes porque el menu se duplicaba
+            /*if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<CloudDataStore>();
@@ -21,7 +21,7 @@ namespace AutobusesUAQ
             if (Device.RuntimePlatform == Device.iOS)
                 MainPage = new MapPage();
             else
-                MainPage = new NavigationPage(new MapPage());
+                MainPage = new NavigationPage(new MapPage());*/
         }
     }
 }

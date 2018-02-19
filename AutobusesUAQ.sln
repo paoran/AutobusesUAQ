@@ -5,7 +5,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AutobusesUAQ", "AutobusesUA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutobusesUAQ.iOS", "iOS\AutobusesUAQ.iOS.csproj", "{8CDE990F-3E9F-4E9F-B684-FD1F9B7A6C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutobusesUAQ.Droid", "Droid\AutobusesUAQ.Droid.csproj", "{D032D764-9DDC-4022-A34F-7F9C19BBD056}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutobusesUAQ", "Droid\AutobusesUAQ.csproj", "{D032D764-9DDC-4022-A34F-7F9C19BBD056}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutobusesUAQ.MobileAppService", "MobileAppService\AutobusesUAQ.MobileAppService.csproj", "{B607BA1D-A02A-45B6-9542-85C0D954EC4E}"
 EndProject

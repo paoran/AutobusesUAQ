@@ -42,7 +42,7 @@ namespace AutobusesUAQ
                     Thread.Sleep(1000);
                     double lat = 20.5923831 + (i * 0.001);
                     pin.Position = new Position(lat, -100.4113046);
-                    customMap.CustomPins.CollectionChanged += UpdatePinsOnMap;
+                    //customMap.CustomPins.CollectionChanged += UpdatePinsOnMap;
 
                     Content = customMap;    
                 }

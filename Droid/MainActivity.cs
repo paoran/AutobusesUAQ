@@ -11,7 +11,7 @@ using Xamarin.Forms.Maps;
 
 namespace AutobusesUAQ.Droid
 {
-    [Activity(Label = "AutobusesUAQ.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Autobuses UAQ", Icon = "@drawable/iconoBus", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
