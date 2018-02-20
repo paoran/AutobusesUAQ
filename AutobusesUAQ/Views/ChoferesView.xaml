@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AutobusesUAQ.ChoferesView" Title="Choferes">
+    <ContentPage.Content>
+        <ScrollView x:Name="svChoferes">
+            <Label x:Name="etiquetaCargando" 
+                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                FontAttributes="Bold" FontFamily="Futura-Medium"
+                FontSize="20" TextColor="#498224">
+            </Label>
+            <StackLayout>
+                <ListView
+                    x:Name="listaChoferes" ItemsSource="{Binding listaChoferes}" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                          <!--<Image Source="{Binding url_portada}" HorizontalOptions="Start" WidthRequest="100"  VerticalOptions="Center" />-->
+                                          <Label FontSize="14" HorizontalOptions="FillAndExpand" Text="{Binding nombreCompleto}" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40" FontFamily="Futura-Medium"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                          <Label FontSize="10" Text="Domicilio: " TextColor="Maroon" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding domicilioCompleto}" TextColor="Gray"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                          <Label FontSize="10" Text="Correo electrónico: " TextColor="Maroon" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding email}" TextColor="Gray"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                          <Label FontSize="10" Text="Teléfono celular: " TextColor="Maroon" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding telCelular}" TextColor="Gray"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                          <Label FontSize="10" Text="Teléfono de casa: " TextColor="Maroon" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding telCasa}" TextColor="Gray"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

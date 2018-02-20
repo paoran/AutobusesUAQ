@@ -40,7 +40,7 @@ namespace AutobusesUAQ.Views
                 if (menu.id == 2)//Choferes
                 {
                     IsPresented = false;//Para que el menu desaparesca cuando se le haga click
-                    //Detail = new NavigationPage(new Carrito());
+                    Detail = new NavigationPage(new ChoferesView());
                 }
                 if (menu.id == 3)
                 {

@@ -58,6 +58,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Ubicacion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\VehiculoRutaConductor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChoferesView.xaml.cs">
+      <DependentUpon>ChoferesView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -82,6 +85,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DetalleCamion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChoferesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
