@@ -13,7 +13,7 @@ namespace MapOverlay.Droid
     {
         List<Position> routeCoordinates;
 
-        public CustomMapRenderer(Context context) : base(context)
+        public CustomMapRenderer(Context context) 
         {
         }
 

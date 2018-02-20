@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Gms.Maps.Model;
 using AutobusesUAQ;
 using AutobusesUAQ.Droid;
+using AutobusesUAQ.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
@@ -11,7 +12,7 @@ using Xamarin.Forms.Maps.Android;
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace AutobusesUAQ.Droid
 {
-     public class CustomMapRenderer : MapRenderer
+    public class CustomMapRenderer : MapRenderer
     {
         List<Position> routeCoordinates;
 
@@ -49,6 +50,21 @@ namespace AutobusesUAQ.Droid
             }
 
             NativeMap.AddPolyline(polylineOptions);
+        }
+        protected override MarkerOptions CreateMarker(Pin pin)
+        {
+            var cpin = pin as CustomPin;
+            var hue = (float)cpin.Color.Hue % 1F * 360F;
+            var alpha = (float)cpin.Opacity;
+
+            var opts = new MarkerOptions();
+            opts.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
+            opts.SetTitle(pin.Label);
+            opts.SetSnippet(pin.Address);
+            //opts.SetIcon(BitmapDescriptorFactory.DefaultMarker(hue));
+            //opts.SetAlpha(alpha);
+
+            return opts;
         }
     }
 }

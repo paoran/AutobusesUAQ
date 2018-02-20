@@ -24,7 +24,7 @@ namespace AutobusesUAQ.Views
                 //new Models.Menu { id= 6, titulo = "Ingresar/Registrarse"/*, detalle = "Cerrar la aplicación."*/, icono = "acerca.png"}
             };
             ListaMenu.ItemsSource = menu;
-            Detail = new NavigationPage(new MapPage());//Se cambia para que sea la cartelera la primera en cargar
+            Detail = new NavigationPage(new Inicio());//Se cambia para que sea la cartelera la primera en cargar
         }
 
         public async void ListaMenu_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
@@ -34,7 +34,7 @@ namespace AutobusesUAQ.Views
             {
                 if (menu.id == 1)//Inicio 
                 {
-                    Detail = new NavigationPage(new MapPage());
+                    Detail = new NavigationPage(new Inicio());
                     IsPresented = false;//Para que el menu desaparesca cuando se le haga click
                 }
                 if (menu.id == 2)//Choferes
