@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AutobusesUAQ.Views.DetalleCamion">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AutobusesUAQ.Views.DetalleCamion" Title="Detalle" BackgroundColor="White">
     <ContentPage.Content>
-        <Label>Camion</Label>
-        <Label>Modelo</Label>
-        <Label>Chofer</Label>
-        <Label>Ruta</Label>
+        <ScrollView x:Name="svDetalle">
+            <Label x:Name="etiquetaCargando" 
+                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                FontAttributes="Bold" FontFamily="Futura-Medium"
+                FontSize="20" TextColor="#498224">
+            </Label>
+            <StackLayout>
+                <ListView
+                    x:Name="Detalle" ItemsSource="{Binding Detalle}" VerticalOptions="FillAndExpand" HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <!--<StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <ContentView Padding="0,0,0,0" VerticalOptions="FillAndExpand">
+                                                    <Image Source="{Binding url_portada}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="300"/>
+                                                </ContentView>
+                                            </StackLayout>
+                                        </StackLayout>-->
+
+                                        <ScrollView Grid.Row="1">
+                                            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+                                                <Frame>
+                                                    <StackLayout Orientation="Vertical">
+                                                            <Label HorizontalOptions="Center" Text="Datos del chofer" FontSize="18" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40" FontFamily="Futura-Medium" TextColor="Maroon"/>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Nombre: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding nombre}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Apellido paterno: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding apaterno}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Apellido materno: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding amaterno}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Correo electrónico: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding email}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="RFC: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding rfc}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Domicilio: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding domicilioCompleto}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Teléfono celular: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding telCelular}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Teléfono de casa: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding telCasa}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                                <Frame>
+                                                    <StackLayout Orientation="Vertical">
+                                                            <Label HorizontalOptions="Center" Text="Datos del autobús" FontSize="18" AbsoluteLayout.LayoutBounds="0.25, 0.25, 400, 40" FontFamily="Futura-Medium" TextColor="Maroon"/>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Marca: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding marca}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Modelo: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding modelo}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Año: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80"/>
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding anio}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                          <Label FontSize="10" Text="Placa: " TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="80" />
+                                                          <Label FontSize="10" HorizontalOptions="FillAndExpand" Text="{Binding placa}" TextColor="Gray"></Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ScrollView>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+       </ScrollView>
     </ContentPage.Content>
 </ContentPage>

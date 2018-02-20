@@ -12,7 +12,7 @@ namespace AutobusesUAQ
         public App()
         {
             InitializeComponent();
-            MainPage = new MenuPrincipal();//Se reemplaza por las lineas siguientes porque el menu se duplicaba
+            //MainPage = new MenuPrincipal();//Se reemplaza por las lineas siguientes porque el menu se duplicaba
             /*if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
@@ -22,6 +22,7 @@ namespace AutobusesUAQ
                 MainPage = new MapPage();
             else
                 MainPage = new NavigationPage(new MapPage());*/
+            MainPage = new NavigationPage(new DetalleCamion());//Se reemplaza por las lineas siguientes porque el menu se duplicaba
         }
     }
 }

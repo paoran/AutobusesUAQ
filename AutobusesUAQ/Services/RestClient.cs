@@ -71,5 +71,20 @@ namespace AutobusesUAQ.Services
             }
             //return default(T);
         }
+
+        public async Task<T> convertirJson<T>(string json)
+        {
+            try
+            {
+                var jsonArmado = "{'listaVRC':" + json + "}";
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonArmado);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\nOcurrio un error en la funcion Get del Task");
+                Debug.WriteLine(ex);
+            }
+            return default(T);
+        }
     }
 }

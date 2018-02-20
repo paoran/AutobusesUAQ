@@ -57,6 +57,7 @@
       <DependentUpon>DetalleCamion.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Ubicacion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\VehiculoRutaConductor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
