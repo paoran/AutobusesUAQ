@@ -13,16 +13,6 @@ namespace AutobusesUAQ
         {
             InitializeComponent();
             MainPage = new MenuPrincipal();//Se reemplaza por las lineas siguientes porque el menu se duplicaba
-            /*if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<CloudDataStore>();
-
-            if (Device.RuntimePlatform == Device.iOS)
-                MainPage = new MapPage();
-            else
-                MainPage = new NavigationPage(new MapPage());*/
-            //MainPage = new NavigationPage(new DetalleCamion());//Se reemplaza por las lineas siguientes porque el menu se duplicaba
         }
     }
 }
