@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -34,9 +34,7 @@ namespace AutobusesUAQ.Services
             {
                 Debug.WriteLine("\nOcurrio un error en la funcion Get del Task");
                 Debug.WriteLine(ex);
-                var jsonNuevo = "{\"id\":1,\"derrotero\":\"camion1\",\"puntoInicio\":\"rectoria\",\"puntoFin\":\"CU\",\"frecuencia\":\"20 min\",\"" + nombre + "\":[{\"idCoordenadasRuta\":1, \"latitud\":20.5923831,\"longitud\":\"-100.4113046\",\"idRuta\":2},{\"idCoordenadasRuta\":2, \"latitud\":20.6208049,\"longitud\":\"-100.4213312\",\"idRuta\":2},{\"idCoordenadasRuta\":3, \"latitud\":20.6143688,\"longitud\":\"-100.3878606\",\"idRuta\":2},{\"idCoordenadasRuta\":4, \"latitud\":20.6303242,\"longitud\":\"-100.351588\",\"idRuta\":2}]}";
-                Debug.WriteLine(jsonNuevo);
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonNuevo);
+                return default(T);
             }
             //return default(T);
         }
@@ -52,7 +50,7 @@ namespace AutobusesUAQ.Services
                 //if (                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               == System.Net.HttpStatusCode.OK)
                 //{
                 var jsonRespuesta = await respuesta.Content.ReadAsStringAsync();
-                var jsonArmado = "{\"" + nombre + "\":[" + jsonRespuesta + "]}";
+                var jsonArmado = "{'" + nombre + "':[" + jsonRespuesta + "]}";
                 //var jsonNuevo = "{\"id\":1,\"derrotero\":\"camion1\",\"puntoInicio\":\"rectoria\",\"puntoFin\":\"CU\",\"frecuencia\":\"20 min\",\"" + nombre + "\":[{\"idCoordenadasRuta\":1, \"latitud\":20.5923831,\"longitud\":\"-100.4113046\",\"idRuta\":2},{\"idCoordenadasRuta\":2, \"latitud\":20.6208049,\"longitud\":\"-100.4213312\",\"idRuta\":2},{\"idCoordenadasRuta\":3, \"latitud\":20.6143688,\"longitud\":\"-100.3878606\",\"idRuta\":2},{\"idCoordenadasRuta\":4, \"latitud\":20.6303242,\"longitud\":\"-100.351588\",\"idRuta\":2}]}";
                 Debug.WriteLine(jsonArmado);
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonRespuesta);
@@ -65,13 +63,30 @@ namespace AutobusesUAQ.Services
             {
                 Debug.WriteLine("\nOcurrio un error en la funcion Get del Task");
                 Debug.WriteLine(ex);
-                var jsonNuevo = "{\"id\":1,\"derrotero\":\"camion1\",\"puntoInicio\":\"rectoria\",\"puntoFin\":\"CU\",\"frecuencia\":\"20 min\",\"" + nombre + "\":[{\"idCoordenadasRuta\":1, \"latitud\":20.5923831,\"longitud\":\"-100.4113046\",\"idRuta\":2},{\"idCoordenadasRuta\":2, \"latitud\":20.6208049,\"longitud\":\"-100.4213312\",\"idRuta\":2},{\"idCoordenadasRuta\":3, \"latitud\":20.6143688,\"longitud\":\"-100.3878606\",\"idRuta\":2},{\"idCoordenadasRuta\":4, \"latitud\":20.6303242,\"longitud\":\"-100.351588\",\"idRuta\":2}]}";
-                Debug.WriteLine(jsonNuevo);
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonNuevo);
+                return default(T);
             }
             //return default(T);
         }
 
+        public async Task<T> PostRutas<T>(string url, string nombre, FormUrlEncodedContent datos)
+        {
+            try
+            {
+                HttpClient cliente = new HttpClient();
+                cliente.Timeout = TimeSpan.FromSeconds(10000);
+                var respuesta = await cliente.PostAsync(url, datos);
+                var jsonRespuesta = await respuesta.Content.ReadAsStringAsync();
+                var jsonArmado = "[" + jsonRespuesta.ToString() + "]";
+                Debug.WriteLine(jsonArmado);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonRespuesta);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\nOcurrio un error en la funcion Get del Task");
+                Debug.WriteLine(ex);
+                return default(T);
+            }
+        }
         public async Task<T> convertirJson<T>(string json)
         {
             try
@@ -86,7 +101,6 @@ namespace AutobusesUAQ.Services
             }
             return default(T);
         }
-
         public async Task<T> GetChoferes<T>(string url)
         {
             try
@@ -99,7 +113,9 @@ namespace AutobusesUAQ.Services
                     var jsonArmado = "{'listaChoferes':" + jsonRespuesta + "}";
                     Debug.WriteLine(jsonArmado);
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonArmado);
-                } else{
+                }
+                else
+                {
                     var jsonArmado = "{'listaChoferes':[]}";
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonArmado);
                 }
