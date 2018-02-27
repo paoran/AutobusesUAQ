@@ -52,7 +52,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CustomMapRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DetalleCamion.xaml.cs">
       <DependentUpon>DetalleCamion.xaml</DependentUpon>
     </Compile>

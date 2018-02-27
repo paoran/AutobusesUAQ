@@ -5,15 +5,12 @@ namespace AutobusesUAQ.Models
 {
     public class Ubicacion
     {
-        public Ubicacion()
-        {
-        }
-
+        public int id { get; set; }
+        public int idVehiculo { get; set; }
+        public double idRuta { get; set; }
         public double latitud { get; set; }
         public double longitud { get; set; }
-        //public double idGPS { get; set; }
-        //public double idSIM { get; set; }
-        //public double idCamion { get; set; }
+
 
     }
     public class ListUbicacion

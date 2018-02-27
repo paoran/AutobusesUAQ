@@ -22,7 +22,7 @@ namespace AutobusesUAQ.Models
             set { SetValue(OpacityProperty, value); }
         }
 
-        public string Id { get; set; }
+        public int IdVehiculo { get; set; }
         public string Url { get; set; }
     }
 }
