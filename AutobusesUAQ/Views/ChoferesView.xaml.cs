@@ -25,7 +25,7 @@ namespace AutobusesUAQ
             {
                 RestClient cliente = new RestClient();
 
-                var choferesResp = await cliente.GetChoferes<ListaChoferes>("http://189.211.201.181:1200/BusGPSWebService/api/choferes");
+                var choferesResp = await cliente.GetChoferes<ListaChoferes>("/BusGPSWebService/api/choferes");
                 if (choferesResp != null)
                 {
                     if (choferesResp.listaChoferes.Count > 0)

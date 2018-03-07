@@ -18,6 +18,7 @@ namespace AutobusesUAQ.Views
         }
 
         async void cargaDetalleCamion(int idRuta, int idVehiculo){
+            Config config = new Config();
             etiquetaCargando.Text = "Cargando detalle, por favor espere...";
             svDetalle.Content = etiquetaCargando;
             HttpClient cliente = new HttpClient();
@@ -27,7 +28,7 @@ namespace AutobusesUAQ.Views
                 new KeyValuePair<string, string>("idVehiculo",idVehiculo.ToString())
             });
             var myHttpClient = new HttpClient();
-            var response = await myHttpClient.PostAsync("http://189.211.201.181:1200/BusGPSWebService/api/vehiculorutaconductor", formContent);
+            var response = await myHttpClient.PostAsync(config.ipPrueba+"/BusGPSWebService/api/vehiculorutaconductor", formContent);
             var json = await response.Content.ReadAsStringAsync();
             RestClient c = new RestClient();
             var detalleCamion = await c.convertirJson<ListaVehiculoRutaConductor>(json);

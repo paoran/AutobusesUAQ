@@ -60,6 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ChoferesView.xaml.cs">
       <DependentUpon>ChoferesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

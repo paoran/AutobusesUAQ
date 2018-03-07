@@ -22,6 +22,8 @@ namespace AutobusesUAQ.Models
             set { SetValue(OpacityProperty, value); }
         }
 
+
+
         public int IdVehiculo { get; set; }
         public string Url { get; set; }
     }

@@ -40,11 +40,22 @@ namespace AutobusesUAQ.Views
             Device.BeginInvokeOnMainThread(async () =>
             {
 
-                listRutas = await clienteRuta.Get<Rutas>("http://189.211.201.181:1200/BusGPSWebService/api/rutas", "lstRutas");
-
-                foreach (Rutas ruta in listRutas.lstRutas)
+                listRutas = await clienteRuta.Get<Rutas>("/BusGPSWebService/api/rutas", "lstRutas");
+                if (listRutas != null)
                 {
-                    picker.Items.Add(ruta.derrotero);
+                    if (listRutas.lstRutas.Count > 0)
+                    {
+                        foreach (Rutas ruta in listRutas.lstRutas)
+                        {
+                            picker.Items.Add(ruta.derrotero);
+                        }
+                    }else
+                    {
+                        await DisplayAlert("Aviso", "No hay rutas disponibles", "Aceptar");
+                    }
+                }else
+                {
+                    await DisplayAlert("Aviso", "No hay rutas disponibles", "Aceptar");
                 }
 
             });
@@ -63,34 +74,47 @@ namespace AutobusesUAQ.Views
                     }
                     if (idRuta == 0)
                     {
-                        await DisplayAlert("Error", "Selecciona una subcategoria", "Aceptar");
+                        await DisplayAlert("Error", "Selecciona una ruta", "Aceptar");
                     }
                     RestClient cliente = new RestClient();
 
-                    var rutas = await cliente.GetRutas<Rutas>("http://189.211.201.181:1200/BusGPSWebService/api/rutascoordenadas/idruta/" + idRuta, "coordenadas");
+                    var rutas = await cliente.GetRutas<Rutas>("/BusGPSWebService/api/rutascoordenadas/idruta/" + idRuta, "coordenadas");
                     customMap.RouteCoordinates.Clear();
-                    foreach (CoordenadasRuta posicion in rutas.coordenadas)
-                    {
-                        customMap.RouteCoordinates.Add(new Position(posicion.Latitud, posicion.Longitud));
-                    }
-                    var pila2 = new StackLayout
-                    {
-                        Orientation = StackOrientation.Horizontal,
-                        Children = {
+                    if(rutas != null){
+                        if (rutas.coordenadas.Count > 0)
+                        {
+                            foreach (CoordenadasRuta posicion in rutas.coordenadas)
+                            {
+                                customMap.RouteCoordinates.Add(new Position(posicion.Latitud, posicion.Longitud));
+                            }
+                            var pila2 = new StackLayout
+                            {
+                                Orientation = StackOrientation.Horizontal,
+                                Children = {
                                 picker,
                                 boton
                             }
 
-                    };
-                    Content = new StackLayout
-                    {
-                        Children = {
+                            };
+                            Content = new StackLayout
+                            {
+                                Children = {
                                     customMap,
                                     pila2
                                 }
-                    };
+                            };
+                        }else
+                        {
+                            await DisplayAlert("Aviso", "No se pudo cargar la ruta", "Aceptar");
+                        }
+                    }else{
+                        await DisplayAlert("Aviso", "No se pudo cargar la ruta", "Aceptar");
+                    }
+
+                   
                 });
             };
+
 
             var pila = new StackLayout
             {
@@ -117,8 +141,13 @@ namespace AutobusesUAQ.Views
 
         void OnButtonClicked(object sender, EventArgs e)
         {
-            var newPage = new MapPage(listRutas.lstRutas[picker.SelectedIndex].id);
-            Navigation.PushAsync(newPage);
+            if (picker.SelectedIndex != -1)
+            {
+                var newPage = new MapPage(listRutas.lstRutas[picker.SelectedIndex].id);
+                Navigation.PushAsync(newPage);
+            }else{
+                DisplayAlert("Aviso", "Debes seleccionar una ruta para acceder a ella!", "Aceptar");   
+            }
         }
     }
 }

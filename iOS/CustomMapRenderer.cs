@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using AutobusesUAQ;
 using AutobusesUAQ.iOS;
+using AutobusesUAQ.Models;
 using CoreLocation;
 using MapKit;
 using ObjCRuntime;
@@ -15,6 +18,7 @@ namespace AutobusesUAQ.iOS
         public class CustomMapRenderer : MapRenderer
         {
             MKPolylineRenderer polylineRenderer;
+            ObservableCollection<CustomPin> customPins;
 
             protected override void OnElementChanged(ElementChangedEventArgs<View> e)
             {
@@ -36,6 +40,7 @@ namespace AutobusesUAQ.iOS
                     var formsMap = (CustomMap)e.NewElement;
                     var nativeMap = Control as MKMapView;
                     nativeMap.OverlayRenderer = GetOverlayRenderer;
+                customPins = formsMap.Items;
 
                     CLLocationCoordinate2D[] coords = new CLLocationCoordinate2D[formsMap.RouteCoordinates.Count];
                     int index = 0;

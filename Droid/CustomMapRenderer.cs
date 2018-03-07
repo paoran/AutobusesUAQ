@@ -61,8 +61,7 @@ namespace AutobusesUAQ.Droid
             opts.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
             opts.SetTitle(pin.Label);
             opts.SetSnippet(pin.Address);
-            //opts.SetIcon(BitmapDescriptorFactory.DefaultMarker(hue));
-            //opts.SetAlpha(alpha);
+            opts.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pinBus));
 
             return opts;
         }
