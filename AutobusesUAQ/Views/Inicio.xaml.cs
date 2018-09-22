@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using AutobusesUAQ.Models;
 using AutobusesUAQ.Services;
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace AutobusesUAQ.Views
 {
     public partial class Inicio : ContentPage
     {
-
+        CancellationTokenSource _cts = new CancellationTokenSource();
         CustomMap customMap = new CustomMap
         {
             MapType = MapType.Street,
@@ -22,19 +23,23 @@ namespace AutobusesUAQ.Views
         Button boton = new Button
         {
             Text = "Aceptar",
-            HorizontalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.FillAndExpand,
             VerticalOptions = LayoutOptions.Center
         };
         Picker picker = new Picker
         {
             Title = "Rutas",
-            VerticalOptions = LayoutOptions.CenterAndExpand
+            VerticalOptions = LayoutOptions.CenterAndExpand,
+            HorizontalOptions = LayoutOptions.FillAndExpand
         };
 
         Rutas listRutas = new Rutas();
 
-        public Inicio()
+
+
+        public Inicio(CancellationTokenSource _ct)
         {
+            _cts = _ct;
             customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(20.5923831, -100.4113046), Distance.FromMiles(4.0)));
             RestClient clienteRuta = new RestClient();
             Device.BeginInvokeOnMainThread(async () =>
@@ -143,8 +148,9 @@ namespace AutobusesUAQ.Views
         {
             if (picker.SelectedIndex != -1)
             {
-                var newPage = new MapPage(listRutas.lstRutas[picker.SelectedIndex].id);
+                var newPage = new MapPage(listRutas.lstRutas[picker.SelectedIndex].id,_cts);
                 Navigation.PushAsync(newPage);
+
             }else{
                 DisplayAlert("Aviso", "Debes seleccionar una ruta para acceder a ella!", "Aceptar");   
             }

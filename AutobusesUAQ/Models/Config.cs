@@ -5,8 +5,8 @@ namespace AutobusesUAQ.Models
     {
         public Config()
         {
-            this.ipPrueba = "http://148.240.202.160:1200";
-            this.ipProduccion = "http://148.240.202.160:1200";
+            this.ipPrueba = "http://148.220.4.60/";
+            this.ipProduccion = "http://148.220.4.60/";
         }
         public string ipPrueba { get; set; }
         public string ipProduccion { get; set; }

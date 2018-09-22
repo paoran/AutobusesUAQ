@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
 using Xamarin.Forms;
 
 namespace AutobusesUAQ.Views
 {
     public partial class MenuPrincipal : MasterDetailPage
     {
-        public MenuPrincipal()
+        CancellationTokenSource _cts = new CancellationTokenSource();
+        public MenuPrincipal(CancellationTokenSource _ct)
         {
+            _cts = _ct;
             InitializeComponent();
-            inicio();
+            inicio(_cts);
         }
 
-        void inicio()
+        void inicio(CancellationTokenSource _cts)
         {
             List<Models.Menu> menu = new List<Models.Menu>{//Le cambie Menu a Models.Menu porque al ejecutarlo en iOS manda error de ambiguo
                 new Models.Menu { id= 1, titulo = "Inicio"/*, detalle = "Regresa a la página de inicio."*/, icono = "inicio.png"},
@@ -24,7 +26,7 @@ namespace AutobusesUAQ.Views
                 //new Models.Menu { id= 6, titulo = "Ingresar/Registrarse"/*, detalle = "Cerrar la aplicación."*/, icono = "acerca.png"}
             };
             ListaMenu.ItemsSource = menu;
-            Detail = new NavigationPage(new Inicio());//Se cambia para que sea la cartelera la primera en cargar
+            Detail = new NavigationPage(new Inicio(_cts));//Se cambia para que sea la cartelera la primera en cargar
         }
 
         public async void ListaMenu_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
@@ -34,7 +36,7 @@ namespace AutobusesUAQ.Views
             {
                 if (menu.id == 1)//Inicio 
                 {
-                    Detail = new NavigationPage(new Inicio());
+                    Detail = new NavigationPage(new Inicio(_cts));
                     IsPresented = false;//Para que el menu desaparesca cuando se le haga click
                 }
                 if (menu.id == 2)//Choferes

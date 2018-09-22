@@ -82,6 +82,8 @@
     <AssemblyOriginatorKeyFile>AutobusesUAQ</AssemblyOriginatorKeyFile>
     <CodesignResourceRules></CodesignResourceRules>
     <CodesignProvision>iOS Team Provisioning Profile: com.Andrades.AutobusesUAQ</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
+    <IpaPackageName>AutobusesUAQ</IpaPackageName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
